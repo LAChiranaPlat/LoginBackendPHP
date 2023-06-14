@@ -1,9 +1,9 @@
 <?php 
 	
-	session_start();
-
-	echo $_SESSION["user"];
-
+	include "validation.php";
+	
  ?>
 
+ <h1>Bienvenido <?= $_SESSION["user"]; ?> al Sistema</h1>
+ <hr />
  <a href="close.php">Cerrar sesión</a>

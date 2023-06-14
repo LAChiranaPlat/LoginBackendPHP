@@ -1,26 +1,32 @@
 <?php 
 	
-	//SESIONES 	-> Seguridad
 
-	/*
+	extract($_POST);
 
-		get, post
-
-		$_GET, $_POST, $_REQUEST
-
-	*/
-
-	session_start();//	crea sesiones / utiliza
-
-	$_SESSION["user"]="Huarseral";
+	$encryp=password_hash("jireh", PASSWORD_DEFAULT);	
 	
-	/*
-	$_SESSION["permiso"]=true;
-	$_SESSION["idSession"]="12345678";
-	*/
+	if($nick=="huarseral" && password_verify($pass, $encryp))
+	{
+		
+		session_start();//	crea sesiones / utiliza
+		$_SESSION["user"]=$nick;
+		$_SESSION["permiso"]=true;
+		$_SESSION["active"]=true;
+		$_SESSION["idSession"]="12345678";
 
-	echo "Huarseral";
+		header("location:nosotros.php");
+		die();
+?>
+
+<a href="nosotros.php">Nosotros</a>
+
+<?php 
+
+	}else{
+		header("location:index.php?error=Accesos Incorrectos");
+	}
+
+	
 
  ?>
 
-<a href="nosotros.php">Nosotros</a>

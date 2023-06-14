@@ -3,8 +3,8 @@
 	session_start();
 	session_destroy();
 
-	
-	header("location:out.php");
+
+	header("location:index.php");
 
 
  ?>
