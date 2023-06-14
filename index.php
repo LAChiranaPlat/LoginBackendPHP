@@ -1,19 +1,20 @@
-
 <?php 
-	
-	include "validationLogin.php";
 
-	$message= $_GET["error"] ?? "";
+	//INCLUDE: SI NO ENCUENTRA TE AVISA
+	//REQUIRES: SI NO ENCUENTRA DETIENE EL SCRIPT
 
-	echo "<div style='background:#ff0000;color:white'>$message</div>";
+	spl_autoload_register(function ($nombre_clase) {
+	    
+	    if(str_starts_with($nombre_clase, 'Controller')){
+	    	 require_once "controller/".$nombre_clase . '.php';
+	   	}else{
+	    	 require_once "model/".$nombre_clase . '.php';
+	   	}
+	});
+
+	$views=new ControllerViews();
+	$views->manager();
 
  ?>
 
-
-<form action="pro.php" method="post">
-	<input type="text" name="nick" placeholder="Nombre de Usuario" required="true" />
-	<br />
-	<input type="password" name="pass" placeholder="Clave de Usuario" required="true" />
-
-	<button type="submit">Login</button>
-</form>
+ <a href="?q=system">Entrar al sistema</a>
